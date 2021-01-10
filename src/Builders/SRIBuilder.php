@@ -9,12 +9,18 @@ use Firesphere\CSPHeaders\Models\SRI;
 use Firesphere\CSPHeaders\View\CSPBackend;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
+use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Security;
+use SilverStripe\View\ArrayData;
 
 class SRIBuilder
 {
+    /**
+     * @var ArrayData
+     */
+    protected static $sri;
 
     /**
      * @param $file
@@ -29,7 +35,13 @@ class SRIBuilder
         if ($this->shouldUpdateSRI()) {
             DB::query('TRUNCATE `SRI`');
         }
-        $sri = SRI::findOrCreate($file);
+        if (!self::$sri) {
+            self::$sri = ArrayList::create(SRI::get()->toArray());
+        }
+        $sri = self::$sri->find('File', $file);
+        if (!$sri) {
+            $sri = SRI::findOrCreate($file);
+        }
 
         $request = Controller::curr()->getRequest();
         $cookieSet = ControllerCSPExtension::checkCookie($request);
