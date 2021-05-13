@@ -61,11 +61,8 @@ class SRIBuilder
             self::$sri->push($sri);
         }
 
-        $request = Controller::curr()->getRequest();
-        $cookieSet = ControllerCSPExtension::checkCookie($request);
-
-        // Don't write integrity in dev, it's breaking build scripts
-        if ($sri->SRI && (Director::isLive() || $cookieSet)) {
+        // To skip applying SRI for an environment use yml to disable jsSRI or cssSRI within chosen envs
+        if ($sri->SRI) {
             $htmlAttributes['integrity'] = sprintf('%s-%s', CSPBackend::SHA384, $sri->SRI);
             $htmlAttributes['crossorigin'] = Director::is_site_url($file) ? '' : 'anonymous';
         }
