@@ -1,5 +1,8 @@
 <?php
 
+namespace Firesphere\CSPHeaders\Tasks;
+
+use Firesphere\CSPHeaders\Models\SRI;
 use SilverStripe\Control\Director;
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\Dev\DebugView;
