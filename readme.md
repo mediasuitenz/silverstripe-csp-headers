@@ -1,5 +1,5 @@
-# CSP Headers for SilverStripe
-
+# CSP Headers for SilverStripe 
+ 
 ### Code status
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Firesphere/silverstripe-csp-headers/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Firesphere/silverstripe-csp-headers/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/Firesphere/silverstripe-csp-headers/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/Firesphere/silverstripe-csp-headers/?branch=master)
